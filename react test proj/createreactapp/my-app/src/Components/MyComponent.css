@@ -1,0 +1,9 @@
+.my-comp-div {
+    text-align: center;
+}
+
+.btn {
+    padding: 20px;
+    background-color: green;
+    cursor: pointer;
+}
