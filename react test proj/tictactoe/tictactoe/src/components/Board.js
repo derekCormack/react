@@ -4,51 +4,39 @@ import '../App.css'
 
 class Board extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext: true,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     squares: Array(9).fill(null),
+  //     xIsNext: true,
+  //   };
+  // }
 
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-    console.log("whats the value of squares after slicing: ", squares);
-    // squares[i] = this.state.xIsNext ? 'X' : 'O';
-    if (this.state.xIsNext) {
-      squares[i] = 'X';
-    } else {
-      squares[i] = 'O';
-    }
-
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,  // !  negation of variable (switch)
-    });
-  }
+  
 
   renderSquare(i) {
     return (
       <Square
-        value={this.state.squares[i]}
-        pushMyButton={() => this.handleClick(i)}>
+        // value={this.state.squares[i]}
+        value={this.props.squares[i]}
+        pushMyButton={() => this.props.onClick(i)}>
       </Square>
     );
   }
 
   render() {
-    const winner = this.calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
-    console.log(this.state.squares);
+    //  ----reduntant winner is now being calc in game Component.
+    //  const winner = this.calculateWinner(this.state.squares);
+    // let status;
+    // if (winner) {
+    //   status = 'Winner: ' + winner;
+    // } else {
+    //   status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    // }
+    // console.log(this.state.squares);
     return (
       <div>
-        <div className="status">{status}</div>
+        {/* <div className="status">{status}</div> */}
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -67,27 +55,9 @@ class Board extends React.Component {
       </div>
     );
   }
-  calculateWinner(squares) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
-    }
-    return null;
-  }
+
 
 }
 
 
-export default Board
+export default Board;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import UserInput from './components/UserInput.js'
 import UserOutput from './components/UserOutput.js'
+import UserOutputClass from './components/UserOutputClass.js'
 
 
 class App extends Component {
@@ -13,9 +14,10 @@ class App extends Component {
   }
 
   changeUserName = (event) => {
+    //console.log("what is data?", data);
     console.log("What's newUserName: ", event.target.value);
     //1. You write a method which changes the state username
-    //2. Call this method from a button click of UserInput child component
+    //2. Call this method from change evenet of UserInput child component
     //3. This function will be passed as a reference to the UserInput child component
     let newUserName = event.target.value;
 
@@ -26,6 +28,9 @@ class App extends Component {
     console.log("What's state now? ", this.state);
   }
 
+  clickFunction = (data) => {
+    console.log(data);
+  }
 
   //You can write ES5/ES6 JavaScript before render() JSX...
 
@@ -33,9 +38,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <UserInput changeUN = {this.changeUserName}></UserInput>
-        <UserOutput userName = {this.state.username}></UserOutput>
-        <UserOutput userName="sally"></UserOutput>
+        <UserInput changeUN = { this.changeUserName } > </UserInput>
+        <UserOutput username={ this.state.username } clickFunc={ this.clickFunction.bind(this, "You clicked first paragraph") }></UserOutput>
+        <UserOutput username = "Sally" clickFunc={ this.clickFunction.bind(this, "You clicked second paragraph") }></UserOutput>
+        <UserOutputClass></UserOutputClass>
       </div>
     );
   }

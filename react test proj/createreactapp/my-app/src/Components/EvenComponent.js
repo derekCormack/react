@@ -7,7 +7,9 @@ const EvenComp = (props) => {
             <h1>{ props.children } </h1>
             <h1>Isla likes piggies </h1>
             <h2>Image: </h2>
+            <div onClick={}>
             <img src={ props.url } alt={ props.alt }/>
+            </div>
         </div>
     )
 }
